@@ -1,0 +1,18 @@
+#!/bin/bash
+sudo mount -t vfat /dev/sda1 /mnt  ##mount Printerboards SDcard
+cp --backup=numbered /mnt/* /home/pi/Documents/Firmware_Backup  ##Backup all files on the SDcard
+sudo rm -f /mnt/*  ##clear all files on the SDcard
+
+##download the firmware-file from GoogleDrive online
+fileid="FileID_from_share_link"  ##copy and paste the part after "id=" of the "share-link" something like "0B3nIRrOFv6hVcE9IWEI1QnVZYjT" keep quotation marks
+filename="/mnt/firmware.bin"  ##destination path and filename  keep quotation marks
+curl -c ./cookie -s -L "https://drive.google.com/uc?export=download&id=${fileid}" > /dev/null
+curl -Lb ./cookie "https://drive.google.com/uc?export=download&confirm=`awk '/download/ {print $NF}' ./cookie`&id=${fileid}" -o ${filename}
+
+##alternativly download the firmware-file from a local workstation
+# sudo mount -t cifs //192.168.XXX.XXX/LPC1768 /mnt/lan -o username=NAME,password=PASSWORD  ## IP/networkshare, username and password of the local machine
+# sudo cp /mnt/lan/firmware.bin /mnt/firmware.bin
+# sudo umount -t cifs //192.168.XXX.XXX/LPC1768 /mnt/lan
+
+sudo umount -t vfat /dev/sda1 /mnt  ##UNmount Printerboards sdcard
+echo "M997" >> /dev/ttyACM0  ##reboot the Printerboard and initialize the firmware

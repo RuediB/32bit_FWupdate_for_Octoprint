@@ -1,0 +1,2 @@
+pi ALL=(ALL:ALL) NOPASSWD: /usr/local/bin/updateFW
+pi ALL=(ALL:ALL) NOPASSWD: /home/pi/bin/FWupdate
