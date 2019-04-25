@@ -1,4 +1,4 @@
-# 32bit_FWupdate_for_Octoprint
+# 32bit FWupdate for Octoprint
 Bash script for Firmware Update on 32Bit Boards (Marlin)
 
 At first, it is not Plug & Play and it is more "Quick and Dirty" than "Nice and Clean". But it is my way I managed a "One click Firmware Update" for my SKR V1.3 Board, and it works. Yay!
