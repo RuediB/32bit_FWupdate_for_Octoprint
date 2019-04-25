@@ -29,7 +29,7 @@ By default, the compiled File is stored in the Folder ```...\.pioenvs\LPC1768\fi
 
 <p align="center"><img  alt="platformio.ini" src="Images/PIO_ini.PNG"></p>
 
-### 2. Octoprint
+### 2. Octopi
 
 #### Scripts
 
@@ -69,4 +69,34 @@ sudo /usr/local/bin/updateFW
 exit 0
 ```
 
+Make sure the Rights are set correctly and the Scripts are executable
 
+```$ sudo chmod 755 /path/to/file```
+
+### Sudoers
+
+Normally every Command executetd with ```sudo``` needs a Password. Since we can not enter the Password while the Script is running, we need to tell the Systen to execute the ```sudo```Commands within these two Scripts without a Password entry. Therefore we create a file in the Directorie ```/etc/sudoers.d/```. The Name of this File is non-essential. We name it ```updatescript```. Type the folowing in the Terminal:
+
+```Shell
+$ sudo visudo -f /etc/sudoers.d/updatescript
+```
+write these two lines into the File
+```Shell
+pi ALL=(ALL:ALL) NOPASSWD: /usr/local/bin/updateFW
+pi ALL=(ALL:ALL) NOPASSWD: /home/pi/bin/FWupdate
+```
+Safe the changes with ```CTRL```+```O``` and exit the editor with ```CTRL```+```X```
+
+Make sure the Rights for this file are set to 440 and the owner is root
+```$ sudo chmod 440 /path/to/file```
+```$ sudo chown root /path/to/file```
+
+### 3. Octoprint
+
+The last step is to configure the "System Command Editor". After the installation over Pluginmanager, open the Settings and rightclick on the green Frame. Choose ```Create Command``` and configure it like this:
+
+<p align="center"><img  alt="Sys Cmd Editor" src="System_Command_Editor.JPG"></p>
+
+Hit Safe and You're Done!
+Here is Your "Updade Button"
+<p align="center"><img  alt="Update Button" src="update_button.png"></p>
