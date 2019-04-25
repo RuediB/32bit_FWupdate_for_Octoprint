@@ -52,13 +52,14 @@ curl -c ./cookie -s -L "https://drive.google.com/uc?export=download&id=${fileid}
 curl -Lb ./cookie "https://drive.google.com/uc?export=download&confirm=`awk '/download/ {print $NF}' ./cookie`&id=${fileid}" -o ${filename}
 
 ##alternativly download the firmware-file from a local workstation
-# sudo mount -t cifs //192.168.1.156/LPC1768 /mnt/lan -o username=Ruedi,password=020Sa123  ## IP/networkshare, username and password of the local machine
+# sudo mount -t cifs //192.168.XXX.XXX/LPC1768 /mnt/lan -o username=NAME,password=PASSWORD  ## IP/networkshare, username and password of the local machine
 # sudo cp /mnt/lan/firmware.bin /mnt/firmware.bin
-# sudo umount -t cifs //192.168.1.156/LPC1768 /mnt/lan
+# sudo umount -t cifs //192.168.XXX.XXX/LPC1768 /mnt/lan
 
 sudo umount -t vfat /dev/sda1 /mnt  ##UNmount Printerboards sdcard
 echo "M997" >> /dev/ttyACM0  ##reboot the Printerboard and initialize the firmware
 ```
+
 
 ```/home/pi/bin/FWupdate```
 
@@ -67,4 +68,5 @@ echo "M997" >> /dev/ttyACM0  ##reboot the Printerboard and initialize the firmwa
 sudo /usr/local/bin/updateFW
 exit 0
 ```
+
 
