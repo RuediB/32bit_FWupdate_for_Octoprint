@@ -25,7 +25,7 @@ It is possible to work without Google Drive and send the firmware.bin from the l
 
 #### Platformio.ini
 In the enviroment Section of your Processor, in my case [env:LPC1768], it is possible to define additional Upload Ports.
-By default, the compiled File is stored in the Folder "...\.pioenvs\LPC1768\firmware.bin" if you hit Compile.
+By default, the compiled File is stored in the Folder ...\ .pioenvs\LPC1768\firmware.bin if you hit Compile.
 If you click PIO Upload, PlatformIO stores the File in the folder and tries to Upload to the Board if it is connected via USB. If no Board is present, the file will be uploaded to the additionaly defined Upload Ports. In My case, i defined  one Port for each of my PC's
 
 <p align="center"><img  alt="platformio.ini" src="Images/PIO_ini.PNG"></p>
